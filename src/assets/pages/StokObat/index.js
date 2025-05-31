@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Histori = () => {
+const StokObat = () => {
   retturn(
     <View>
-      <Text>Histori</Text>
+      <Text>StokObat</Text>
     </View>
   )
 }
 
-export default Histori
+export default StokObat
 
 const styles = StyleSheet.create({})
