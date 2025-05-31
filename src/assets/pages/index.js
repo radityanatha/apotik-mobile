@@ -1,4 +1,4 @@
 import Splashscreen from './Splashscreen'
-import Home from './Home'
+import Antrean from './Antrean'
 
-export { Splashscreen, Home }
+export { Splashscreen, Antrean }

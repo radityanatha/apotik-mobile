@@ -9,7 +9,7 @@ import {
 import React from 'react'
 import { Background, SplashS, Logo } from '../../images'
 
-const Splashscreen = () => {
+const Splashscreen = (navigation) => {
   return (
     <ImageBackground source={Background} style={styles.container}>
       {/* Logo dan Nama App */}
@@ -25,7 +25,7 @@ const Splashscreen = () => {
       <Image source={SplashS} style={styles.illustration} />
 
       {/* Tombol */}
-      <TouchableOpacity style={styles.button} activeOpacity={0.7}>
+      <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={() => navigation.navigate('Home')}>
         <Text style={styles.buttonText}>Lanjutkan</Text>
       </TouchableOpacity>
     </ImageBackground>
