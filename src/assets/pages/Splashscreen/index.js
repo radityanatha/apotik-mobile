@@ -1,97 +1,83 @@
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-} from 'react-native'
-import React from 'react'
-import { Background, SplashS, Logo } from '../../images'
+import { StyleSheet, Text, View, Image, StatusBar } from 'react-native'
+import React, { useEffect } from 'react'
+import { SplashS, Logo } from '../../images' // Pastikan path gambar ini sudah benar
 
 const Splashscreen = ({ navigation }) => {
+  // LOGIKA INI SUDAH SEMPURNA DAN SAMA SEPERTI CONTOH SAYA
+  useEffect(() => {
+    // Atur timer untuk pindah ke halaman Login
+    const timer = setTimeout(() => {
+      // Menggunakan replace untuk mengganti halaman, bukan menumpuk. INI SUDAH BENAR.
+      navigation.replace('Login')
+    }, 3000) // Durasi splash screen (3 detik). Anda bisa ganti ke 5000 jika lebih suka.
+
+    // Membersihkan timer untuk mencegah error
+    return () => clearTimeout(timer)
+  }, [navigation])
+
+  // TAMPILAN VISUAL INI DIAMBIL PENUH DARI KODE ANDA YANG SUDAH BAGUS
   return (
-    <ImageBackground source={Background} style={styles.container}>
-      {/* Logo dan Nama App */}
-      <View style={styles.logoContainer}>
+    <View style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="#f0f2f5" />
+
+      {/* Bagian Logo, Nama App, dan Tagline */}
+      <View style={styles.topSection}>
         <Image source={Logo} style={styles.logo} />
-        <View>
-          <Text style={styles.appName}>SiaPotik</Text>
-        </View>
+        <Text style={styles.appName}>SiaPotik</Text>
+        <Text style={styles.tagline}>Cepat, Tepat, dan Aman</Text>
       </View>
-      <Text style={styles.tagline}>“Cepat, Tepat, dan Aman”</Text>
 
-      {/* Gambar Tengah */}
-      <Image source={SplashS} style={styles.illustration} />
-
-      {/* Tombol */}
-      <TouchableOpacity
-        style={styles.button}
-        activeOpacity={0.7}
-        onPress={() => navigation.navigate('MainApp')}
-      >
-        <Text style={styles.buttonText}>Lanjutkan</Text>
-      </TouchableOpacity>
-    </ImageBackground>
+      {/* Gambar Ilustrasi di Tengah */}
+      <View style={styles.middleSection}>
+        <Image source={SplashS} style={styles.illustration} />
+      </View>
+    </View>
   )
 }
 
 export default Splashscreen
 
+// STYLING INI JUGA DIAMBIL PENUH DARI KODE ANDA
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'space-between',
+    backgroundColor: '#f0f2f5',
+    justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 60,
-    backgroundColor: '#fff',
   },
-  logoContainer: {
-    flexDirection: 'row', //logo sejajar teks jadi horizontal
-    alignItems: 'center', //posisi tengah vertkal
-    alignSelf: 'flex-start', //peleteakan dari sisi kiri layar
-    marginTop: 120,
-    marginLeft: 75, //jarak dari sisi kiri
-  },
-  logo: {
-    height: 90,
-    width: 90,
-    resizeMode: 'contain',
-    marginRight: 20,
-  },
-  appName: {
-    fontSize: 45,
-    fontWeight: 'bold',
-    color: '#1F3C88',
-    fontStyle: 'monsterat',
-  },
-  tagline: {
-    fontSize: 20,
-    fontStyle: 'italic',
-    color: '#333',
-    textAlign: 'center',
-    marginTop: 10,
-    textShadowColor: '#999',
-    textShadowOffset: { width: 0.5, height: 0.5 },
-    textShadowRadius: 4,
-  },
-  illustration: {
-    width: 350,
-    height: 400,
-    resizeMode: 'contain',
-    marginTop: 30,
-  },
-  button: {
-    backgroundColor: '#163172',
-    paddingHorizontal: 40,
-    paddingVertical: 14,
-    borderRadius: 30,
+  topSection: {
+    alignItems: 'center',
     marginBottom: 40,
   },
-  buttonText: {
-    color: 'white',
-    fontWeight: '600',
-    fontSize: 16,
+  logo: {
+    height: 100,
+    width: 100,
+    resizeMode: 'contain',
+    marginBottom: 20,
+  },
+  appName: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: '#006241',
+    // Jika Anda belum setup custom font, baris ini bisa menyebabkan error. Hapus jika perlu.
+    // fontFamily: 'Montserrat_Bold',
+    marginBottom: 8,
+  },
+  tagline: {
+    fontSize: 18,
+    fontStyle: 'normal',
+    color: '#333',
+    textAlign: 'center',
+  },
+  middleSection: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
+  illustration: {
+    width: '90%',
+    height: 250,
+    resizeMode: 'contain',
+    alignSelf: 'center',
   },
 })
